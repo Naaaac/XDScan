@@ -62,8 +62,9 @@ public class XDScan: NSObject {
             print("XDScan->\(event)")
             return
         }
+        captureSession.sessionPreset = .hd1920x1080
         captureSession.addOutput(dataOutput)
-        dataOutput.metadataObjectTypes = dataOutput.availableMetadataObjectTypes
+        dataOutput.metadataObjectTypes = [.qr]
         dataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
     }
     
@@ -199,35 +200,35 @@ extension XDScan {
             return
         }
         factor = 1
-        tofocus()
+//        tofocus()
     }
     
     // 循环自动对焦
-   @objc func tofocus() {
-       guard let device = defaultDevice else { return }
-       factor += stepMultiple
-       if factor > 3 {
-           factor = 3
-       }
-        do {
-            let focusPoint = CGPoint(x: 0.5, y: 0.5)
-            try device.lockForConfiguration()
-            device.ramp(toVideoZoomFactor: factor, withRate: 1.0)
-            if device.isFocusModeSupported(.autoFocus) {
-                device.focusPointOfInterest = focusPoint
-                device.focusMode = .autoFocus
-            }
-            
-            if device.isExposureModeSupported(.autoExpose) {
-                device.exposurePointOfInterest = focusPoint
-                device.exposureMode = .autoExpose
-            }
-            device.unlockForConfiguration()
-        } catch {
-            print("lockForConfiguration error")
-        }
-       perform(#selector(tofocus), with: self, afterDelay: factorLoopTime)
-    }
+//   @objc func tofocus() {
+//       guard let device = defaultDevice else { return }
+//       factor += stepMultiple
+//       if factor > 3 {
+//           factor = 3
+//       }
+//        do {
+//            let focusPoint = CGPoint(x: 0.5, y: 0.5)
+//            try device.lockForConfiguration()
+//            device.ramp(toVideoZoomFactor: factor, withRate: 1.0)
+//            if device.isFocusModeSupported(.autoFocus) {
+//                device.focusPointOfInterest = focusPoint
+//                device.focusMode = .autoFocus
+//            }
+//
+//            if device.isExposureModeSupported(.autoExpose) {
+//                device.exposurePointOfInterest = focusPoint
+//                device.exposureMode = .autoExpose
+//            }
+//            device.unlockForConfiguration()
+//        } catch {
+//            print("lockForConfiguration error")
+//        }
+//       perform(#selector(tofocus), with: self, afterDelay: factorLoopTime)
+//    }
     
 }
 
