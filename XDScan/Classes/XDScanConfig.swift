@@ -27,6 +27,7 @@ public struct XDScanConfig {
     /// 扫码区Y轴偏移
     public var offsetY: CGFloat = -34
     
+    public var isCornerInside: Bool = false
     /// 四角线条长度
     public var length: CGFloat = 20
     /// 四角线条颜色

@@ -31,7 +31,8 @@ class ScanVC: UIViewController,UIImagePickerControllerDelegate, UINavigationCont
         scan.startScanning()
 
         let btn = UIButton(frame: .init(x: 100, y: view.bounds.height - 100, width: 90, height: 40))
-        btn.setTitle("选择照片", for: .normal)
+//        btn.setTitle("选择照片", for: .normal)
+        btn.setImage(UIImage(named: "icon_pick_from_albumn"), for: .normal)
         view.addSubview(btn)
         btn.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
     }
@@ -84,6 +85,7 @@ extension ScanVC: XDScanDataSource, XDScanDelegate {
         qrFramedView.length = config.length
         qrFramedView.radius = config.radius
         qrFramedView.color = config.color
+        qrFramedView.isCornerInside = true
         return qrFramedView
     }
     
