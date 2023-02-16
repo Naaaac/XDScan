@@ -16,6 +16,11 @@ public class XDScan: NSObject {
     /// 初始焦距，默认1
     private var factor = 1.0
     private let captureSession = AVCaptureSession()
+    
+    public var isRunning: Bool {
+        return captureSession.isRunning
+    }
+    
     private let dataOutput = AVCaptureMetadataOutput()
     
     public weak var dataSource: XDScanDataSource?
