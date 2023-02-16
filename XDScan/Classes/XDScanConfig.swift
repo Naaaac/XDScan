@@ -43,7 +43,7 @@ public struct XDScanConfig {
     /// 镂空周边背景颜色
     public var maskBgColor: UIColor = UIColor(white: 0, alpha: 0.5)
     /// 动画图片
-    public var animationImage: UIImage = XDScan.getBundleImg(with: "xdscan_animation_line")!
+    public var animationImage: UIImage? = XDScan.getBundleImg(with: "xdscan_animation_line")
 }
 
 extension XDScanConfig {
